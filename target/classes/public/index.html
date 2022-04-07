@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quests of the Roundtable</title>
+  <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!--<link href="/main.css" rel="stylesheet"> -->
+  <script src="/webjars/jquery/jquery.min.js"></script>
+  <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+  <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+  <script src="/socket.js"></script>
+</head>
+<body>
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
+  enabled. Please enable
+  Javascript and reload this page!</h2></noscript>
+
+
+<br>
+<h1>Your ID:</h1>
+<p id="player_id">
+</p>
+<div id="main-content" class="container">
+  <div id="info">
+    <!--<div class="col-md-6">
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="connect">WebSocket connection:</label>
+          <button id="connect" class="btn btn-default" type="submit">Connect</button>
+          <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
+          </button>
+        </div>
+      </form>
+    </div> -->
+    <div class="col-md-6">
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="name">What is your name?</label>
+          <input type="text" id="name" class="form-control" placeholder="Your name here...">
+        </div>
+        <button id="send" class="btn btn-default" type="submit">Make New Game</button>
+      </form>
+    </div>
+
+    <div class="col-md-6">
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="num">How many players?</label>
+          <input type="text" id="num" class="form-control" placeholder="Number Of Players">
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-6">
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="joincode">GameID to join:</label>
+          <input type="text" id="joincode" class="form-control" placeholder="GAMEID">
+        </div>
+        <button id="code" class="btn btn-default" type="submit">Join Game</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table id="conversation" class="table table-striped">
+        <thead>
+        <tr>
+          <th>Game ID:</th>
+        </tr>
+        </thead>
+        <tbody id="greetings">
+        </tbody>
+
+        <thead>
+        <tr>
+          <th>Your Cards:</th>
+        </tr>
+        </thead>
+        <tbody id="deck">
+        </tbody>
+
+        <thead>
+        <tr>
+          <th>Rank Cards:</th>
+        </tr>
+        </thead>
+        <tbody id="ranks">
+        </tbody>
+
+        <thead>
+        <tr>
+          <th>Discard Pile:</th>
+        </tr>
+        </thead>
+        <tbody id="discardPile">
+        </tbody>
+
+        <div class="col-md-6">
+          <form class="form-inline">
+            <div class="form-group">
+              <label for="discardCard">Discard/Select Card:</label>
+              <input type="text" id="discardCard" class="form-control" placeholder="Index of card">
+            </div>
+            <button id="discard" class="btn btn-default" type="submit">discard card</button>
+          </form>
+        </div>
+
+        <div>
+            <button id="getAdventureCard" class="btn btn-default" type="submit" onclick="getAdventureCard()">get Adventure card</button>
+        </div>
+
+        <div>
+          <button id="getStoryCard" class="btn btn-default" type="submit" onclick="getStoryCard()">Get Story Card</button>
+        </div>
+        <button id="selectAlly" class="btn btn-default" type="submit" onclick="selectAlly()">Select Ally/Amour</button>
+
+        <div id="gameBoard">
+          <h4>Story Card</h4>
+          <div id="storyCard">
+            <!--running story cards will be shown in here-->
+          </div>
+          <div id="Questions">
+            <!--Questions are asked here-->
+          </div>
+
+          <div id="test_bid" style="display:none">
+            <input id="bidNo_input" type="text">
+            <button id="Bid_button" class="btn btn-default" type="submit">Bid</button>
+          </div>
+
+          <div id="cards_index" style="display:none">
+            <b> choose cards for Quest:</b><br>
+            <input id="cards_input" type="text">
+            <button id="cards_button" class="btn btn-default" type="submit">Select Cards</button>
+          </div>
+
+          <div id="cards_index2" style="display:none">
+            <b> Select Ally or Amour to play:</b><br>
+            <input id="cards_input2" type="text">
+            <button id="cards_button2" class="btn btn-default" type="submit">Select Ally/Amour</button>
+          </div>
+
+          <div id="cards_index3" style="display:none">
+            <b> choose cards for Tournament:</b><br>
+            <input id="cards_input3" type="text">
+            <button id="cards_button3" class="btn btn-default" type="submit">Select Cards</button>
+          </div>
+
+        </div>
+
+      </table>
+    </div>
+
+
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
